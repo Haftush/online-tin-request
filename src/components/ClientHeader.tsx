@@ -1,12 +1,20 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Globe, Shield, Menu, X } from "lucide-react";
+import { Globe, Shield, Menu, X, LogIn, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function ClientHeader() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-md">
@@ -39,12 +47,28 @@ export function ClientHeader() {
             <Globe className="h-3.5 w-3.5" />
             <span>EN</span>
           </div>
-          <Link to="/backoffice">
-            <Button variant="outline" size="sm">Officer Portal</Button>
-          </Link>
-          <Link to="/register">
-            <Button variant="hero" size="sm">Start Registration</Button>
-          </Link>
+          {user ? (
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 rounded-full bg-accent px-3 py-1.5">
+                <User className="h-3.5 w-3.5 text-primary" />
+                <span className="text-xs font-medium text-foreground">{user.name}</span>
+              </div>
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="gap-1.5">
+                <LogOut className="h-3.5 w-3.5" /> Sign Out
+              </Button>
+            </div>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="outline" size="sm" className="gap-1.5">
+                  <LogIn className="h-3.5 w-3.5" /> Sign In
+                </Button>
+              </Link>
+              <Link to="/register">
+                <Button variant="hero" size="sm">Start Registration</Button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -64,10 +88,17 @@ export function ClientHeader() {
             <Link to="/" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Home</Link>
             <Link to="/register" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Register</Link>
             <Link to="/track" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Track Application</Link>
-            <Link to="/backoffice" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Officer Portal</Link>
-            <Link to="/register" onClick={() => setMenuOpen(false)}>
-              <Button variant="hero" className="w-full">Start Registration</Button>
-            </Link>
+            {user ? (
+              <Button variant="outline" onClick={() => { handleLogout(); setMenuOpen(false); }} className="w-full gap-2">
+                <LogOut className="h-4 w-4" /> Sign Out
+              </Button>
+            ) : (
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                <Button variant="hero" className="w-full gap-2">
+                  <LogIn className="h-4 w-4" /> Sign In
+                </Button>
+              </Link>
+            )}
           </nav>
         </motion.div>
       )}
