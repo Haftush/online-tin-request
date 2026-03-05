@@ -2,36 +2,36 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ClientHeader } from "@/components/ClientHeader";
-import { Shield, FileCheck, Clock, Globe, ArrowRight, CheckCircle2, Building2, FileText } from "lucide-react";
+import { Shield, FileCheck, Clock, Globe, ArrowRight, CheckCircle2, Building2, FileText, Sparkles, Zap, Lock } from "lucide-react";
 
 const features = [
   {
     icon: Globe,
-    title: "100% Online Registration",
-    description: "Complete your tax registration from anywhere in the world without physical presence in Ethiopia.",
+    title: "100% Online",
+    description: "Register from anywhere in the world — no physical presence required.",
   },
   {
     icon: FileCheck,
-    title: "Digital Document Upload",
-    description: "Securely upload all required legal documents in PDF, JPEG, or PNG format.",
+    title: "Digital Documents",
+    description: "Securely upload all required legal documents in PDF, JPEG, or PNG.",
   },
   {
-    icon: Clock,
+    icon: Zap,
     title: "Fast Processing",
-    description: "Receive your TIN electronically upon approval with real-time application tracking.",
+    description: "Receive your TIN electronically with real-time tracking.",
   },
   {
-    icon: Shield,
+    icon: Lock,
     title: "Secure & Encrypted",
-    description: "All data is transmitted over HTTPS with enterprise-grade security protocols.",
+    description: "Enterprise-grade HTTPS encryption for all data transfers.",
   },
 ];
 
 const steps = [
-  { icon: Building2, title: "Create Account", desc: "Register with your email address" },
+  { icon: Building2, title: "Create Account", desc: "Sign up with your email" },
   { icon: FileText, title: "Complete Form", desc: "Fill in business & tax details" },
-  { icon: FileCheck, title: "Upload Documents", desc: "Submit required legal documents" },
-  { icon: CheckCircle2, title: "Receive TIN", desc: "Get your TIN upon approval" },
+  { icon: FileCheck, title: "Upload Docs", desc: "Submit required documents" },
+  { icon: CheckCircle2, title: "Get Your TIN", desc: "Receive TIN upon approval" },
 ];
 
 export default function LandingPage() {
@@ -39,35 +39,52 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background">
       <ClientHeader />
 
-      {/* Hero */}
+      {/* Hero — enhanced */}
       <section className="relative overflow-hidden gradient-hero">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-secondary blur-[100px]" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 rounded-full bg-primary blur-[120px]" />
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-[10%] w-80 h-80 rounded-full bg-secondary/20 blur-[120px]" />
+          <div className="absolute bottom-0 right-[5%] w-[500px] h-[500px] rounded-full bg-primary/10 blur-[150px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary-foreground/5" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-primary-foreground/5" />
         </div>
-        <div className="container relative py-20 md:py-32">
+        <div className="container relative py-24 md:py-36">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <div className="inline-flex items-center gap-2 rounded-full gradient-gold px-4 py-1.5 mb-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 rounded-full gradient-gold px-4 py-1.5 mb-6 shadow-elevated"
+            >
+              <Sparkles className="h-3.5 w-3.5 text-secondary-foreground" />
               <span className="text-xs font-bold font-display text-secondary-foreground uppercase tracking-wider">
                 Ministry of Revenues — Ethiopia
               </span>
-            </div>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-[1.1] mb-6">
+            </motion.div>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-[1.08] mb-6">
               Digital Tax Registration for{" "}
-              <span className="text-secondary">Non-Resident</span> Service Providers
+              <span className="relative">
+                <span className="text-secondary">Non-Resident</span>
+                <motion.span
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                  className="absolute bottom-1 left-0 h-1 rounded-full bg-secondary/40"
+                />
+              </span>{" "}
+              Service Providers
             </h1>
-            <p className="text-lg text-primary-foreground/80 mb-8 max-w-lg leading-relaxed">
-              Register for Digital Services Tax and VAT obligations in Ethiopia entirely online — no physical presence required.
+            <p className="text-lg text-primary-foreground/75 mb-10 max-w-lg leading-relaxed">
+              Register for Digital Services Tax and VAT obligations in Ethiopia entirely online — fast, secure, and paperless.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/register">
-                <Button variant="gold" size="lg" className="gap-2">
-                  Start Registration <ArrowRight className="h-4 w-4" />
+              <Link to="/login">
+                <Button variant="gold" size="lg" className="gap-2 text-base">
+                  Get Started <ArrowRight className="h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/track">
@@ -80,28 +97,52 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Stats bar */}
+      <section className="relative -mt-8 z-10">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-elevated grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            {[
+              { value: "100%", label: "Online Process" },
+              { value: "24/7", label: "Available" },
+              { value: "< 48h", label: "Processing Time" },
+              { value: "Secure", label: "Data Encrypted" },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <p className="font-display text-2xl md:text-3xl font-extrabold text-primary">{s.value}</p>
+                <p className="text-xs text-muted-foreground font-medium mt-1">{s.label}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* Features */}
-      <section className="container py-20">
+      <section className="container py-24">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="text-center mb-16"
         >
-          <h2 className="font-display text-3xl font-bold text-foreground mb-3">Why Register Digitally?</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Why Register Digitally?</h2>
           <p className="text-muted-foreground max-w-md mx-auto">Streamlined, secure, and efficient tax registration for the digital economy.</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((f, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group rounded-xl border border-border bg-card p-6 shadow-card hover:shadow-elevated transition-all duration-300"
+              className="group rounded-2xl border border-border bg-card p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg gradient-primary">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl gradient-primary group-hover:scale-110 transition-transform duration-300">
                 <f.icon className="h-5 w-5 text-primary-foreground" />
               </div>
               <h3 className="font-display text-base font-bold text-foreground mb-2">{f.title}</h3>
@@ -112,41 +153,63 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="bg-muted/50 py-20">
+      <section className="bg-muted/40 py-24">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-14"
+            className="text-center mb-16"
           >
-            <h2 className="font-display text-3xl font-bold text-foreground mb-3">How It Works</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">How It Works</h2>
             <p className="text-muted-foreground">Four simple steps to complete your registration.</p>
           </motion.div>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {steps.map((s, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12 }}
-                className="relative text-center"
+                className="text-center"
               >
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl gradient-gold shadow-card">
-                  <s.icon className="h-7 w-7 text-secondary-foreground" />
-                </div>
-                <div className="absolute top-2 left-0 w-full flex justify-center">
-                  <span className="font-display text-[64px] font-extrabold text-muted/80 leading-none select-none">
+                <div className="relative mx-auto mb-5">
+                  <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-2xl gradient-gold shadow-card">
+                    <s.icon className="h-7 w-7 text-secondary-foreground" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full gradient-primary text-[11px] font-bold text-primary-foreground shadow-card">
                     {i + 1}
-                  </span>
+                  </div>
                 </div>
-                <h3 className="relative font-display text-base font-bold text-foreground mb-1">{s.title}</h3>
-                <p className="relative text-sm text-muted-foreground">{s.desc}</p>
+                <h3 className="font-display text-base font-bold text-foreground mb-1">{s.title}</h3>
+                <p className="text-sm text-muted-foreground">{s.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
+      </section>
+
+      {/* CTA */}
+      <section className="container py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-2xl gradient-hero p-10 md:p-16 text-center shadow-elevated"
+        >
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
+            Ready to Register Your Business?
+          </h2>
+          <p className="text-primary-foreground/70 mb-8 max-w-md mx-auto">
+            Start your Digital Services Tax and VAT registration today — the entire process takes less than 15 minutes.
+          </p>
+          <Link to="/login">
+            <Button variant="gold" size="lg" className="gap-2 text-base">
+              Start Registration <ArrowRight className="h-5 w-5" />
+            </Button>
+          </Link>
+        </motion.div>
       </section>
 
       {/* Footer */}
@@ -159,7 +222,7 @@ export default function LandingPage() {
               </div>
               <span className="font-display text-sm font-bold text-foreground">Ministry of Revenues — Ethiopia</span>
             </div>
-            <p className="text-xs text-muted-foreground">© 2026 Ministry of Revenues. All rights reserved. Digital Tax Registration Portal.</p>
+            <p className="text-xs text-muted-foreground">© 2026 Ministry of Revenues. All rights reserved.</p>
           </div>
         </div>
       </footer>
