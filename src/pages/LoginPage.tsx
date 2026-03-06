@@ -42,7 +42,7 @@ export default function LoginPage() {
       const role = isOfficer ? "officer" : "taxpayer";
       if (login(email, password, role)) {
         toast.success(`Welcome back!`);
-        navigate(isOfficer ? "/backoffice" : "/");
+        navigate(isOfficer ? "/backoffice" : "/register");
       } else {
         toast.error(isOfficer ? "Invalid officer credentials." : "Invalid email or password.");
       }
