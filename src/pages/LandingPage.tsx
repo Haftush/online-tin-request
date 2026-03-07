@@ -153,7 +153,7 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="bg-muted/40 py-24">
+      <section className="bg-muted/40 py-12 sm:py-16 md:py-24 px-4">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
