@@ -122,7 +122,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="container py-24">
+      <section className="container py-12 sm:py-16 md:py-24 px-4">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
