@@ -28,7 +28,7 @@ const features = [
 ];
 
 const steps = [
-  { icon: Building2, title: "Create Account", desc: "Sign up with your email" },
+  { icon: Building2, title: "Start Registration", desc: "No account needed" },
   { icon: FileText, title: "Complete Form", desc: "Fill in business & tax details" },
   { icon: FileCheck, title: "Upload Docs", desc: "Submit required documents" },
   { icon: CheckCircle2, title: "Get Your TIN", desc: "Receive TIN upon approval" },
@@ -82,7 +82,7 @@ export default function LandingPage() {
               Register for Digital Services Tax and VAT obligations in Ethiopia entirely online — fast, secure, and paperless.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/login">
+              <Link to="/register">
                 <Button variant="gold" size="lg" className="gap-2 text-base">
                   Get Started <ArrowRight className="h-5 w-5" />
                 </Button>
@@ -204,7 +204,7 @@ export default function LandingPage() {
           <p className="text-primary-foreground/70 mb-8 max-w-md mx-auto">
             Start your Digital Services Tax and VAT registration today — the entire process takes less than 15 minutes.
           </p>
-          <Link to="/login">
+          <Link to="/register">
             <Button variant="gold" size="lg" className="gap-2 text-base">
               Start Registration <ArrowRight className="h-5 w-5" />
             </Button>
