@@ -47,28 +47,9 @@ export function ClientHeader() {
             <Globe className="h-3.5 w-3.5" />
             <span>EN</span>
           </div>
-          {user ? (
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2 rounded-full bg-accent px-3 py-1.5">
-                <User className="h-3.5 w-3.5 text-primary" />
-                <span className="text-xs font-medium text-foreground">{user.name}</span>
-              </div>
-              <Button variant="ghost" size="sm" onClick={handleLogout} className="gap-1.5">
-                <LogOut className="h-3.5 w-3.5" /> Sign Out
-              </Button>
-            </div>
-          ) : (
-            <>
-              <Link to="/login">
-                <Button variant="outline" size="sm" className="gap-1.5">
-                  <LogIn className="h-3.5 w-3.5" /> Sign In
-                </Button>
-              </Link>
-              <Link to="/register">
-                <Button variant="hero" size="sm">Start Registration</Button>
-              </Link>
-            </>
-          )}
+          <Link to="/register">
+            <Button variant="hero" size="sm">Start Registration</Button>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
