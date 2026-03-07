@@ -113,8 +113,8 @@ export default function LandingPage() {
               { value: "Secure", label: "Data Encrypted" },
             ].map((s, i) => (
               <div key={i} className="text-center">
-                <p className="font-display text-2xl md:text-3xl font-extrabold text-primary">{s.value}</p>
-                <p className="text-xs text-muted-foreground font-medium mt-1">{s.label}</p>
+              <p className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-primary">{s.value}</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground font-medium mt-1">{s.label}</p>
               </div>
             ))}
           </motion.div>
