@@ -121,15 +121,15 @@ export default function RegistrationPage() {
   return (
     <div className="min-h-screen bg-background">
       <ClientHeader />
-      <div className="container max-w-4xl py-6 md:py-8">
+      <div className="container max-w-4xl py-4 sm:py-6 md:py-8 px-3 sm:px-4">
         {/* Compact header */}
-        <div className="mb-6">
-          <h1 className="font-display text-xl md:text-2xl font-bold text-foreground">Digital Services Registration</h1>
-          <p className="text-xs text-muted-foreground mt-1">Complete all sections to register for tax obligations in Ethiopia.</p>
+        <div className="mb-4 sm:mb-6">
+          <h1 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground">Digital Services Registration</h1>
+          <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">Complete all sections to register for tax obligations in Ethiopia.</p>
         </div>
 
         {/* Step indicator */}
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6">
           <StepIndicator steps={STEPS.map(s => s.label)} currentStep={step} />
         </div>
 
