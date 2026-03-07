@@ -134,7 +134,7 @@ export default function RegistrationPage() {
         </div>
 
         {/* Step content */}
-        <div className="rounded-xl border border-border bg-card p-5 md:p-8 shadow-card">
+        <div className="rounded-xl border border-border bg-card p-3 sm:p-5 md:p-8 shadow-card">
           <div className="flex items-center gap-2.5 mb-6 pb-4 border-b border-border">
             {(() => {
               const Icon = STEPS[step].icon;

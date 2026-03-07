@@ -191,12 +191,12 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="container py-24">
+      <section className="container py-12 sm:py-16 md:py-24 px-4">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl gradient-hero p-10 md:p-16 text-center shadow-elevated"
+          className="rounded-2xl gradient-hero p-6 sm:p-10 md:p-16 text-center shadow-elevated"
         >
           <h2 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
             Ready to Register Your Business?
