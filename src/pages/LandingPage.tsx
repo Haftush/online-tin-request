@@ -98,13 +98,13 @@ export default function LandingPage() {
       </section>
 
       {/* Stats bar */}
-      <section className="relative -mt-8 z-10">
+      <section className="relative -mt-6 sm:-mt-8 z-10 px-4">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-elevated grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="rounded-2xl border border-border bg-card p-4 sm:p-6 md:p-8 shadow-elevated grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6"
           >
             {[
               { value: "100%", label: "Online Process" },
