@@ -47,48 +47,48 @@ export default function LandingPage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary-foreground/5" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-primary-foreground/5" />
         </div>
-        <div className="container relative py-24 md:py-36">
+        <div className="container relative py-16 sm:py-24 md:py-36 px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="max-w-2xl"
+            className="max-w-2xl mx-auto text-center"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 rounded-full gradient-gold px-4 py-1.5 mb-6 shadow-elevated"
+              className="inline-flex items-center gap-2 rounded-full gradient-gold px-3 sm:px-4 py-1.5 mb-4 sm:mb-6 shadow-elevated"
             >
-              <Sparkles className="h-3.5 w-3.5 text-secondary-foreground" />
-              <span className="text-xs font-bold font-display text-secondary-foreground uppercase tracking-wider">
+              <Sparkles className="h-3 sm:h-3.5 w-3 sm:w-3.5 text-secondary-foreground" />
+              <span className="text-[10px] sm:text-xs font-bold font-display text-secondary-foreground uppercase tracking-wider">
                 Ministry of Revenues — Ethiopia
               </span>
             </motion.div>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-[1.08] mb-6">
+            <h1 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-[1.12] mb-4 sm:mb-6">
               Digital Tax Registration for{" "}
-              <span className="relative">
+              <span className="relative inline-block">
                 <span className="text-secondary">Non-Resident</span>
                 <motion.span
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ delay: 0.8, duration: 0.5 }}
-                  className="absolute bottom-1 left-0 h-1 rounded-full bg-secondary/40"
+                  className="absolute bottom-0.5 sm:bottom-1 left-0 h-0.5 sm:h-1 rounded-full bg-secondary/40"
                 />
               </span>{" "}
               Service Providers
             </h1>
-            <p className="text-lg text-primary-foreground/75 mb-10 max-w-lg leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-primary-foreground/75 mb-6 sm:mb-10 max-w-lg mx-auto leading-relaxed px-2">
               Register for Digital Services Tax and VAT obligations in Ethiopia entirely online — fast, secure, and paperless.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link to="/register">
-                <Button variant="gold" size="lg" className="gap-2 text-base">
-                  Get Started <ArrowRight className="h-5 w-5" />
+                <Button variant="gold" size="lg" className="gap-2 text-sm sm:text-base w-full sm:w-auto">
+                  Get Started <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
                 </Button>
               </Link>
               <Link to="/track">
-                <Button variant="outline" size="lg" className="bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/20 hover:text-primary-foreground">
+                <Button variant="outline" size="lg" className="bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/20 hover:text-primary-foreground w-full sm:w-auto">
                   Track Application
                 </Button>
               </Link>
