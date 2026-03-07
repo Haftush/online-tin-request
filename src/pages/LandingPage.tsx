@@ -164,7 +164,7 @@ export default function LandingPage() {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">How It Works</h2>
             <p className="text-muted-foreground">Four simple steps to complete your registration.</p>
           </motion.div>
-          <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-4xl mx-auto">
             {steps.map((s, i) => (
               <motion.div
                 key={i}
