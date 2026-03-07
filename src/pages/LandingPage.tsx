@@ -204,7 +204,7 @@ export default function LandingPage() {
           <p className="text-primary-foreground/70 mb-8 max-w-md mx-auto">
             Start your Digital Services Tax and VAT registration today — the entire process takes less than 15 minutes.
           </p>
-          <Link to="/login">
+          <Link to="/register">
             <Button variant="gold" size="lg" className="gap-2 text-base">
               Start Registration <ArrowRight className="h-5 w-5" />
             </Button>
