@@ -82,7 +82,7 @@ export default function LandingPage() {
               Register for Digital Services Tax and VAT obligations in Ethiopia entirely online — fast, secure, and paperless.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/login">
+              <Link to="/register">
                 <Button variant="gold" size="lg" className="gap-2 text-base">
                   Get Started <ArrowRight className="h-5 w-5" />
                 </Button>
