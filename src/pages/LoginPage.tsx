@@ -1,51 +1,32 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Shield, LogIn, UserPlus, Eye, EyeOff } from "lucide-react";
+import { Shield, LogIn, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 
 export default function LoginPage() {
-  const [searchParams] = useSearchParams();
-  const isOfficer = searchParams.get("role") === "officer";
-  const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { user, login, signup } = useAuth();
+  const { user, login } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect if already logged in
-  if (user) {
-    if (user.role === "officer") {
-      navigate("/backoffice", { replace: true });
-    } else {
-      navigate("/register", { replace: true });
-    }
+  if (user && user.role === "officer") {
+    navigate("/backoffice", { replace: true });
     return null;
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isSignup) {
-      if (signup(email, name, password)) {
-        toast.success("Account created successfully!");
-        navigate("/register");
-      } else {
-        toast.error("Please fill in all fields.");
-      }
+    if (login(email, password, "officer")) {
+      toast.success("Welcome back, Officer!");
+      navigate("/backoffice");
     } else {
-      const role = isOfficer ? "officer" : "taxpayer";
-      if (login(email, password, role)) {
-        toast.success(`Welcome back!`);
-        navigate(isOfficer ? "/backoffice" : "/register");
-      } else {
-        toast.error(isOfficer ? "Invalid officer credentials." : "Invalid email or password.");
-      }
+      toast.error("Invalid officer credentials.");
     }
   };
 
@@ -64,28 +45,18 @@ export default function LoginPage() {
             </div>
             <div className="text-left">
               <p className="font-display text-sm font-bold text-primary-foreground">MOR Digital Portal</p>
-              <p className="text-[10px] text-primary-foreground/60">Tax Registration System</p>
+              <p className="text-[10px] text-primary-foreground/60">Officer Access</p>
             </div>
           </Link>
-          <h1 className="font-display text-2xl font-bold text-primary-foreground">
-            {isOfficer ? "Officer Sign In" : isSignup ? "Create Account" : "Sign In"}
-          </h1>
-          <p className="text-sm text-primary-foreground/60 mt-1">
-            {isOfficer ? "Access the registration review portal" : isSignup ? "Register to start your tax application" : "Access your tax registration portal"}
-          </p>
+          <h1 className="font-display text-2xl font-bold text-primary-foreground">Officer Sign In</h1>
+          <p className="text-sm text-primary-foreground/60 mt-1">Access the registration review portal</p>
         </div>
 
         <div className="rounded-2xl border border-border/10 bg-card p-6 shadow-elevated">
           <form onSubmit={handleSubmit} className="space-y-4">
-            {isSignup && (
-              <div className="space-y-1.5">
-                <Label className="text-sm font-semibold">Full Name</Label>
-                <Input placeholder="Your full name" className="uppercase" value={name} onChange={e => setName(e.target.value.toUpperCase())} />
-              </div>
-            )}
             <div className="space-y-1.5">
               <Label className="text-sm font-semibold">Email Address</Label>
-              <Input type="email" placeholder={isOfficer ? "admin@mor.gov.et" : "your@email.com"} value={email} onChange={e => setEmail(e.target.value)} />
+              <Input type="email" placeholder="admin@mor.gov.et" value={email} onChange={e => setEmail(e.target.value)} />
             </div>
             <div className="space-y-1.5">
               <Label className="text-sm font-semibold">Password</Label>
@@ -101,29 +72,13 @@ export default function LoginPage() {
                 </button>
               </div>
             </div>
-
             <Button type="submit" variant="hero" className="w-full gap-2" size="lg">
-              {isSignup ? <><UserPlus className="h-4 w-4" /> Create Account</> : <><LogIn className="h-4 w-4" /> Sign In</>}
+              <LogIn className="h-4 w-4" /> Sign In
             </Button>
           </form>
-
-          {!isOfficer && (
-            <div className="mt-4 text-center">
-              <button
-                type="button"
-                className="text-sm text-primary hover:underline font-medium"
-                onClick={() => setIsSignup(!isSignup)}
-              >
-                {isSignup ? "Already have an account? Sign in" : "Don't have an account? Create one"}
-              </button>
-            </div>
-          )}
-
-          {isOfficer && (
-            <p className="mt-4 text-xs text-center text-muted-foreground">
-              Demo credentials: admin@mor.gov.et / admin123
-            </p>
-          )}
+          <p className="mt-4 text-xs text-center text-muted-foreground">
+            Demo credentials: admin@mor.gov.et / admin123
+          </p>
         </div>
 
         <div className="text-center mt-6">

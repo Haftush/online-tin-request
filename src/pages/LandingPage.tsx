@@ -28,7 +28,7 @@ const features = [
 ];
 
 const steps = [
-  { icon: Building2, title: "Create Account", desc: "Sign up with your email" },
+  { icon: Building2, title: "Start Registration", desc: "No account needed" },
   { icon: FileText, title: "Complete Form", desc: "Fill in business & tax details" },
   { icon: FileCheck, title: "Upload Docs", desc: "Submit required documents" },
   { icon: CheckCircle2, title: "Get Your TIN", desc: "Receive TIN upon approval" },
