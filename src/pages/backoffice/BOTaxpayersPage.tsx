@@ -89,66 +89,19 @@ export default function BOTaxpayersPage() {
         </div>
       </div>
 
-      {/* Desktop table */}
-      <div className="hidden md:block rounded-xl border border-border bg-card shadow-card overflow-hidden">
-        <div className="grid grid-cols-[1.3fr_1fr_100px_100px_90px_80px_40px] gap-3 px-5 py-3 border-b border-border bg-muted/50">
-          <SortHeader label="Business Name" col="business" />
-          <span className="text-xs font-semibold font-display text-muted-foreground uppercase tracking-wider">TIN</span>
-          <SortHeader label="Country" col="country" />
-          <span className="text-xs font-semibold font-display text-muted-foreground uppercase tracking-wider">Sector</span>
-          <SortHeader label="Registered" col="registered" />
-          <SortHeader label="Status" col="status" />
-          <span></span>
-        </div>
-        {paginated.map((tp, i) => (
-          <motion.div
-            key={tp.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: i * 0.03 }}
-            className="grid grid-cols-[1.3fr_1fr_100px_100px_90px_80px_40px] gap-3 px-5 py-3.5 border-b border-border last:border-0 hover:bg-accent/30 transition-colors items-center"
-          >
-            <div className="flex items-center gap-2.5 min-w-0">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 shrink-0">
-                <Building2 className="h-4 w-4 text-primary" />
-              </div>
-              <p className="text-sm font-semibold text-foreground truncate">{tp.business}</p>
-            </div>
-            <p className="text-sm font-mono text-primary truncate">{tp.tin}</p>
-            <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-              <Globe className="h-3 w-3 shrink-0" /> <span className="truncate">{tp.country}</span>
-            </div>
-            <p className="text-xs text-muted-foreground">{tp.sector}</p>
-            <p className="text-xs text-muted-foreground">{tp.registered}</p>
-            <Badge variant={tp.status === "Active" ? "default" : "destructive"} className="text-[10px] w-fit">
-              {tp.status}
-            </Badge>
-            <button
-              onClick={() => { navigator.clipboard.writeText(tp.tin); toast.success("TIN copied!"); }}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              title="Copy TIN"
-            >
-              <Copy className="h-4 w-4" />
-            </button>
-          </motion.div>
-        ))}
-        {paginated.length === 0 && (
-          <div className="p-10 text-center text-muted-foreground text-sm">No taxpayers found.</div>
-        )}
-      </div>
-
-      {/* Mobile: horizontally scrollable table */}
-      <div className="md:hidden rounded-xl border border-border bg-card shadow-card overflow-hidden">
+      {/* Unified responsive table for all devices */}
+      <div className="rounded-xl border border-border bg-card shadow-card overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[600px] text-sm">
+          <table className="w-full min-w-[700px] text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/50">
-                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Business</th>
-                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">TIN</th>
-                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Country</th>
-                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Sector</th>
-                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Date</th>
-                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Status</th>
+                <th className="px-4 py-3 text-left"><SortHeader label="Business" col="business" /></th>
+                <th className="px-4 py-3 text-left text-xs font-semibold font-display text-muted-foreground uppercase tracking-wider">TIN</th>
+                <th className="px-4 py-3 text-left"><SortHeader label="Country" col="country" /></th>
+                <th className="px-4 py-3 text-left text-xs font-semibold font-display text-muted-foreground uppercase tracking-wider">Sector</th>
+                <th className="px-4 py-3 text-left"><SortHeader label="Registered" col="registered" /></th>
+                <th className="px-4 py-3 text-left"><SortHeader label="Status" col="status" /></th>
+                <th className="px-4 py-3 w-10"></th>
               </tr>
             </thead>
             <tbody>
@@ -160,24 +113,38 @@ export default function BOTaxpayersPage() {
                   transition={{ delay: i * 0.03 }}
                   className="border-b border-border last:border-0 hover:bg-accent/30 transition-colors"
                 >
-                  <td className="px-3 py-3 font-semibold text-foreground whitespace-nowrap">{tp.business}</td>
-                  <td className="px-3 py-3 whitespace-nowrap">
+                  <td className="px-4 py-3 whitespace-nowrap">
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+                        <Building2 className="h-4 w-4 text-primary" />
+                      </div>
+                      <span className="font-semibold text-foreground">{tp.business}</span>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap">
                     <button onClick={() => { navigator.clipboard.writeText(tp.tin); toast.success("TIN copied!"); }} className="flex items-center gap-1.5 font-mono text-primary hover:underline">
                       {tp.tin} <Copy className="h-3 w-3 text-primary/50" />
                     </button>
                   </td>
-                  <td className="px-3 py-3 text-muted-foreground whitespace-nowrap">{tp.country}</td>
-                  <td className="px-3 py-3 text-muted-foreground whitespace-nowrap">{tp.sector}</td>
-                  <td className="px-3 py-3 text-muted-foreground whitespace-nowrap">{tp.registered}</td>
-                  <td className="px-3 py-3 whitespace-nowrap">
+                  <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">
+                    <span className="flex items-center gap-1.5"><Globe className="h-3 w-3" /> {tp.country}</span>
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">{tp.sector}</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">{tp.registered}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">
                     <Badge variant={tp.status === "Active" ? "default" : "destructive"} className="text-[10px]">{tp.status}</Badge>
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap">
+                    <button onClick={() => { navigator.clipboard.writeText(tp.tin); toast.success("TIN copied!"); }} className="text-muted-foreground hover:text-foreground transition-colors" title="Copy TIN">
+                      <Copy className="h-4 w-4" />
+                    </button>
                   </td>
                 </motion.tr>
               ))}
             </tbody>
           </table>
           {paginated.length === 0 && (
-            <div className="py-12 text-center text-muted-foreground text-sm">No taxpayers found.</div>
+            <div className="p-10 text-center text-muted-foreground text-sm">No taxpayers found.</div>
           )}
         </div>
       </div>
