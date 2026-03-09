@@ -137,46 +137,49 @@ export default function BOTaxpayersPage() {
         )}
       </div>
 
-      {/* Mobile cards */}
-      <div className="md:hidden space-y-3">
-        {paginated.map((tp, i) => (
-          <motion.div
-            key={tp.id}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.04 }}
-            className="rounded-xl border border-border bg-card p-4 shadow-card"
-          >
-            <div className="flex items-start justify-between mb-2">
-              <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 shrink-0">
-                  <Building2 className="h-4 w-4 text-primary" />
-                </div>
-                <p className="text-sm font-bold text-foreground truncate">{tp.business}</p>
-              </div>
-              <Badge variant={tp.status === "Active" ? "default" : "destructive"} className="text-[10px] shrink-0 ml-2">
-                {tp.status}
-              </Badge>
-            </div>
-            <div className="flex items-center justify-between rounded-lg bg-muted/50 px-3 py-2 mb-2">
-              <div className="min-w-0">
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">TIN</p>
-                <p className="font-mono text-sm font-bold text-primary truncate">{tp.tin}</p>
-              </div>
-              <button onClick={() => { navigator.clipboard.writeText(tp.tin); toast.success("TIN copied!"); }} className="text-muted-foreground hover:text-foreground shrink-0 ml-2">
-                <Copy className="h-4 w-4" />
-              </button>
-            </div>
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><Globe className="h-3 w-3" /> {tp.country}</span>
-              <span>{tp.sector}</span>
-              <span>{tp.registered}</span>
-            </div>
-          </motion.div>
-        ))}
-        {paginated.length === 0 && (
-          <div className="py-12 text-center text-muted-foreground text-sm">No taxpayers found.</div>
-        )}
+      {/* Mobile: horizontally scrollable table */}
+      <div className="md:hidden rounded-xl border border-border bg-card shadow-card overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[600px] text-sm">
+            <thead>
+              <tr className="border-b border-border bg-muted/50">
+                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Business</th>
+                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">TIN</th>
+                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Country</th>
+                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Sector</th>
+                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Date</th>
+                <th className="px-3 py-2.5 text-left text-[10px] font-semibold font-display text-muted-foreground uppercase tracking-wider">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {paginated.map((tp, i) => (
+                <motion.tr
+                  key={tp.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: i * 0.03 }}
+                  className="border-b border-border last:border-0 hover:bg-accent/30 transition-colors"
+                >
+                  <td className="px-3 py-3 font-semibold text-foreground whitespace-nowrap">{tp.business}</td>
+                  <td className="px-3 py-3 whitespace-nowrap">
+                    <button onClick={() => { navigator.clipboard.writeText(tp.tin); toast.success("TIN copied!"); }} className="flex items-center gap-1.5 font-mono text-primary hover:underline">
+                      {tp.tin} <Copy className="h-3 w-3 text-primary/50" />
+                    </button>
+                  </td>
+                  <td className="px-3 py-3 text-muted-foreground whitespace-nowrap">{tp.country}</td>
+                  <td className="px-3 py-3 text-muted-foreground whitespace-nowrap">{tp.sector}</td>
+                  <td className="px-3 py-3 text-muted-foreground whitespace-nowrap">{tp.registered}</td>
+                  <td className="px-3 py-3 whitespace-nowrap">
+                    <Badge variant={tp.status === "Active" ? "default" : "destructive"} className="text-[10px]">{tp.status}</Badge>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+          {paginated.length === 0 && (
+            <div className="py-12 text-center text-muted-foreground text-sm">No taxpayers found.</div>
+          )}
+        </div>
       </div>
 
       {/* Pagination */}
