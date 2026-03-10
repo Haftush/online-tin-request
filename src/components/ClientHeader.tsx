@@ -64,9 +64,6 @@ export function ClientHeader() {
             <Link to="/" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Home</Link>
             <Link to="/register" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Register</Link>
             <Link to="/track" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Track Application</Link>
-            <Link to="/register" onClick={() => setMenuOpen(false)}>
-              <Button variant="hero" className="w-full gap-2">Start Registration</Button>
-            </Link>
           </nav>
         </motion.div>
       )}
