@@ -81,14 +81,14 @@ export default function LandingPage() {
             <p className="text-sm sm:text-base md:text-lg text-primary-foreground/75 mb-6 sm:mb-10 max-w-lg mx-auto leading-relaxed px-2">
               Register for Digital Services Tax and VAT obligations in Ethiopia entirely online — fast, secure, and paperless.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-row gap-2 sm:gap-3 justify-center">
               <Link to="/register">
-                <Button variant="gold" size="lg" className="gap-2 text-sm sm:text-base w-full sm:w-auto">
-                  Register Here <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
+                <Button variant="gold" size="default" className="gap-1.5 text-xs sm:text-base h-9 px-3 sm:h-12 sm:px-8">
+                  Register Here <ArrowRight className="h-3.5 sm:h-5 w-3.5 sm:w-5" />
                 </Button>
               </Link>
               <Link to="/track">
-                <Button variant="outline" size="lg" className="bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/20 hover:text-primary-foreground w-full sm:w-auto">
+                <Button variant="outline" size="default" className="bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 hover:bg-primary-foreground/20 hover:text-primary-foreground text-xs sm:text-base h-9 px-3 sm:h-12 sm:px-8">
                   Track Application
                 </Button>
               </Link>
