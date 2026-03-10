@@ -132,7 +132,7 @@ export default function LandingPage() {
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Why Register Digitally?</h2>
           <p className="text-muted-foreground max-w-md mx-auto">Streamlined, secure, and efficient tax registration for the digital economy.</p>
         </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {features.map((f, i) => (
             <motion.div
               key={i}
@@ -140,13 +140,13 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group rounded-2xl border border-border bg-card p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
+              className="group rounded-xl sm:rounded-2xl border border-border bg-card p-3 sm:p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl gradient-primary group-hover:scale-110 transition-transform duration-300">
-                <f.icon className="h-5 w-5 text-primary-foreground" />
+              <div className="mb-2 sm:mb-4 flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl gradient-primary group-hover:scale-110 transition-transform duration-300">
+                <f.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary-foreground" />
               </div>
-              <h3 className="font-display text-base font-bold text-foreground mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{f.description}</p>
+              <h3 className="font-display text-xs sm:text-base font-bold text-foreground mb-1 sm:mb-2">{f.title}</h3>
+              <p className="text-[10px] sm:text-sm text-muted-foreground leading-relaxed">{f.description}</p>
             </motion.div>
           ))}
         </div>
