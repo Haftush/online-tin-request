@@ -42,14 +42,9 @@ export function ClientHeader() {
           </Link>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <Globe className="h-3.5 w-3.5" />
-            <span>EN</span>
-          </div>
-          <Link to="/register">
-            <Button variant="hero" size="sm">Start Registration</Button>
-          </Link>
+        <div className="hidden md:flex items-center gap-1.5 text-xs text-muted-foreground">
+          <Globe className="h-3.5 w-3.5" />
+          <span>EN</span>
         </div>
 
         {/* Mobile toggle */}
