@@ -175,11 +175,11 @@ export default function LandingPage() {
                 className="text-center"
               >
                 <div className="relative mx-auto mb-3 sm:mb-5">
-                  <div className="flex h-11 w-11 sm:h-16 sm:w-16 mx-auto items-center justify-center rounded-xl sm:rounded-2xl gradient-gold shadow-card">
+                  <div className="flex h-11 w-11 sm:h-16 sm:w-16 mx-auto items-center justify-center rounded-xl sm:rounded-2xl gradient-gold shadow-card relative">
                     <s.icon className="h-5 w-5 sm:h-7 sm:w-7 text-secondary-foreground" />
-                  </div>
-                  <div className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 flex h-5 w-5 sm:h-7 sm:w-7 items-center justify-center rounded-full gradient-primary text-[9px] sm:text-[11px] font-bold text-primary-foreground shadow-card">
-                    {i + 1}
+                    <span className="absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full gradient-primary text-[9px] sm:text-[10px] font-bold text-primary-foreground shadow-card">
+                      {i + 1}
+                    </span>
                   </div>
                 </div>
                 <h3 className="font-display text-xs sm:text-base font-bold text-foreground mb-0.5 sm:mb-1">{s.title}</h3>
