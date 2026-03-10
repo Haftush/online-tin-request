@@ -84,7 +84,7 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link to="/register">
                 <Button variant="gold" size="lg" className="gap-2 text-sm sm:text-base w-full sm:w-auto">
-                  Get Started <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
+                  Register Here <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
                 </Button>
               </Link>
               <Link to="/track">
