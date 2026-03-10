@@ -84,7 +84,7 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link to="/register">
                 <Button variant="gold" size="lg" className="gap-2 text-sm sm:text-base w-full sm:w-auto">
-                  Get Started <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
+                  Register Here <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
                 </Button>
               </Link>
               <Link to="/track">
@@ -132,7 +132,7 @@ export default function LandingPage() {
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">Why Register Digitally?</h2>
           <p className="text-muted-foreground max-w-md mx-auto">Streamlined, secure, and efficient tax registration for the digital economy.</p>
         </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {features.map((f, i) => (
             <motion.div
               key={i}
@@ -140,13 +140,13 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group rounded-2xl border border-border bg-card p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
+              className="group rounded-xl sm:rounded-2xl border border-border bg-card p-3 sm:p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl gradient-primary group-hover:scale-110 transition-transform duration-300">
-                <f.icon className="h-5 w-5 text-primary-foreground" />
+              <div className="mb-2 sm:mb-4 flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl gradient-primary group-hover:scale-110 transition-transform duration-300">
+                <f.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary-foreground" />
               </div>
-              <h3 className="font-display text-base font-bold text-foreground mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{f.description}</p>
+              <h3 className="font-display text-xs sm:text-base font-bold text-foreground mb-1 sm:mb-2">{f.title}</h3>
+              <p className="text-[10px] sm:text-sm text-muted-foreground leading-relaxed">{f.description}</p>
             </motion.div>
           ))}
         </div>
@@ -164,7 +164,7 @@ export default function LandingPage() {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">How It Works</h2>
             <p className="text-muted-foreground">Four simple steps to complete your registration.</p>
           </motion.div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-8 max-w-4xl mx-auto">
             {steps.map((s, i) => (
               <motion.div
                 key={i}
@@ -174,16 +174,16 @@ export default function LandingPage() {
                 transition={{ delay: i * 0.12 }}
                 className="text-center"
               >
-                <div className="relative mx-auto mb-5">
-                  <div className="flex h-16 w-16 mx-auto items-center justify-center rounded-2xl gradient-gold shadow-card">
-                    <s.icon className="h-7 w-7 text-secondary-foreground" />
+                <div className="relative mx-auto mb-3 sm:mb-5">
+                  <div className="flex h-11 w-11 sm:h-16 sm:w-16 mx-auto items-center justify-center rounded-xl sm:rounded-2xl gradient-gold shadow-card">
+                    <s.icon className="h-5 w-5 sm:h-7 sm:w-7 text-secondary-foreground" />
                   </div>
-                  <div className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full gradient-primary text-[11px] font-bold text-primary-foreground shadow-card">
+                  <div className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 flex h-5 w-5 sm:h-7 sm:w-7 items-center justify-center rounded-full gradient-primary text-[9px] sm:text-[11px] font-bold text-primary-foreground shadow-card">
                     {i + 1}
                   </div>
                 </div>
-                <h3 className="font-display text-base font-bold text-foreground mb-1">{s.title}</h3>
-                <p className="text-sm text-muted-foreground">{s.desc}</p>
+                <h3 className="font-display text-xs sm:text-base font-bold text-foreground mb-0.5 sm:mb-1">{s.title}</h3>
+                <p className="text-[10px] sm:text-sm text-muted-foreground">{s.desc}</p>
               </motion.div>
             ))}
           </div>

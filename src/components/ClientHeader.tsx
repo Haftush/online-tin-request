@@ -42,14 +42,9 @@ export function ClientHeader() {
           </Link>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <Globe className="h-3.5 w-3.5" />
-            <span>EN</span>
-          </div>
-          <Link to="/register">
-            <Button variant="hero" size="sm">Start Registration</Button>
-          </Link>
+        <div className="hidden md:flex items-center gap-1.5 text-xs text-muted-foreground">
+          <Globe className="h-3.5 w-3.5" />
+          <span>EN</span>
         </div>
 
         {/* Mobile toggle */}
@@ -69,9 +64,6 @@ export function ClientHeader() {
             <Link to="/" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Home</Link>
             <Link to="/register" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Register</Link>
             <Link to="/track" onClick={() => setMenuOpen(false)} className="text-sm font-medium py-2">Track Application</Link>
-            <Link to="/register" onClick={() => setMenuOpen(false)}>
-              <Button variant="hero" className="w-full gap-2">Start Registration</Button>
-            </Link>
           </nav>
         </motion.div>
       )}
