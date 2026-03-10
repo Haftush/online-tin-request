@@ -190,39 +190,54 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="container py-12 sm:py-16 md:py-24 px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="rounded-2xl gradient-hero p-6 sm:p-10 md:p-16 text-center shadow-elevated"
-        >
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-            Ready to Register Your Business?
-          </h2>
-          <p className="text-primary-foreground/70 mb-8 max-w-md mx-auto">
-            Start your Digital Services Tax and VAT registration today — the entire process takes less than 15 minutes.
-          </p>
-          <Link to="/register">
-            <Button variant="gold" size="lg" className="gap-2 text-base">
-              Start Registration <ArrowRight className="h-5 w-5" />
-            </Button>
-          </Link>
-        </motion.div>
-      </section>
-
       {/* Footer */}
-      <footer className="border-t border-border bg-card py-10">
-        <div className="container">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg gradient-primary">
-                <Shield className="h-4 w-4 text-primary-foreground" />
+      <footer className="gradient-hero py-10 sm:py-14">
+        <div className="container px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-2.5 mb-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-foreground/10 border border-primary-foreground/20">
+                  <Shield className="h-5 w-5 text-secondary" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-display text-sm font-bold text-primary-foreground leading-tight">MOR</span>
+                  <span className="text-[10px] text-primary-foreground/50 leading-tight">Digital Tax Registration</span>
+                </div>
               </div>
-              <span className="font-display text-sm font-bold text-foreground">Ministry of Revenues — Ethiopia</span>
+              <p className="text-xs text-primary-foreground/60 leading-relaxed max-w-xs">
+                Ministry of Revenues — Ethiopia. Providing secure, efficient digital tax services for non-resident service providers.
+              </p>
             </div>
-            <p className="text-xs text-muted-foreground">© 2026 Ministry of Revenues. All rights reserved.</p>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-display text-xs font-bold text-secondary uppercase tracking-wider mb-3">Quick Links</h4>
+              <nav className="flex flex-col gap-2">
+                <Link to="/register" className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors">Register</Link>
+                <Link to="/track" className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors">Track Application</Link>
+                <Link to="/login" className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors">Officer Login</Link>
+              </nav>
+            </div>
+
+            {/* CTA */}
+            <div>
+              <h4 className="font-display text-xs font-bold text-secondary uppercase tracking-wider mb-3">Get Started</h4>
+              <p className="text-xs text-primary-foreground/60 mb-4">Register for Digital Services Tax and VAT — takes less than 15 minutes.</p>
+              <Link to="/register">
+                <Button variant="gold" size="sm" className="gap-2">
+                  Register Here <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-[11px] text-primary-foreground/40">© 2026 Ministry of Revenues. All rights reserved.</p>
+            <div className="flex items-center gap-1.5 text-[11px] text-primary-foreground/40">
+              <Lock className="h-3 w-3" />
+              <span>Secured & Encrypted</span>
+            </div>
           </div>
         </div>
       </footer>
