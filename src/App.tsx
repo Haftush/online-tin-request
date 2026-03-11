@@ -4,8 +4,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 import LandingPage from "./pages/LandingPage";
+import RegisterSelectPage from "./pages/RegisterSelectPage";
 import RegistrationPage from "./pages/RegistrationPage";
+import DomesticRegistrationPage from "./pages/DomesticRegistrationPage";
 import TrackPage from "./pages/TrackPage";
 import BackofficePage from "./pages/BackofficePage";
 import LoginPage from "./pages/LoginPage";
@@ -23,8 +26,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegistrationPage />} />
-            <Route path="/track" element={<TrackPage />} />
+            <Route path="/register" element={<ProtectedRoute><RegisterSelectPage /></ProtectedRoute>} />
+            <Route path="/register/non-resident" element={<ProtectedRoute><RegistrationPage /></ProtectedRoute>} />
+            <Route path="/register/domestic" element={<ProtectedRoute><DomesticRegistrationPage /></ProtectedRoute>} />
+            <Route path="/track" element={<ProtectedRoute><TrackPage /></ProtectedRoute>} />
             <Route path="/backoffice" element={<BackofficePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

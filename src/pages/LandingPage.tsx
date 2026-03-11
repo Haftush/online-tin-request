@@ -8,7 +8,7 @@ const features = [
   {
     icon: Globe,
     title: "100% Online",
-    description: "Register from anywhere in the world — no physical presence required.",
+    description: "Register from anywhere — no physical presence required.",
   },
   {
     icon: FileCheck,
@@ -28,7 +28,7 @@ const features = [
 ];
 
 const steps = [
-  { icon: Building2, title: "Start Registration", desc: "No account needed" },
+  { icon: Building2, title: "Create Account", desc: "Sign up or sign in" },
   { icon: FileText, title: "Complete Form", desc: "Fill in business & tax details" },
   { icon: FileCheck, title: "Upload Docs", desc: "Submit required documents" },
   { icon: CheckCircle2, title: "Get Your TIN", desc: "Receive TIN upon approval" },
@@ -39,7 +39,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background">
       <ClientHeader />
 
-      {/* Hero — enhanced */}
+      {/* Hero */}
       <section className="relative overflow-hidden gradient-hero">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-[10%] w-80 h-80 rounded-full bg-secondary/20 blur-[120px]" />
@@ -66,20 +66,19 @@ export default function LandingPage() {
               </span>
             </motion.div>
             <h1 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-[1.12] mb-4 sm:mb-6">
-              Digital Tax Registration for{" "}
+              Digital Tax Registration{" "}
               <span className="relative inline-block">
-                <span className="text-secondary">Non-Resident</span>
+                <span className="text-secondary">Portal</span>
                 <motion.span
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ delay: 0.8, duration: 0.5 }}
                   className="absolute bottom-0.5 sm:bottom-1 left-0 h-0.5 sm:h-1 rounded-full bg-secondary/40"
                 />
-              </span>{" "}
-              Service Providers
+              </span>
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-primary-foreground/75 mb-6 sm:mb-10 max-w-lg mx-auto leading-relaxed px-2">
-              Register for Digital Services Tax and VAT obligations in Ethiopia entirely online — fast, secure, and paperless.
+              Register for tax obligations in Ethiopia — for both domestic and non-resident service providers. Fast, secure, and paperless.
             </p>
             <div className="flex flex-row gap-2 sm:gap-3 justify-center">
               <Link to="/register">
@@ -113,7 +112,7 @@ export default function LandingPage() {
               { value: "Secure", label: "Data Encrypted" },
             ].map((s, i) => (
               <div key={i} className="text-center">
-              <p className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-primary">{s.value}</p>
+                <p className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-primary">{s.value}</p>
                 <p className="text-[10px] sm:text-xs text-muted-foreground font-medium mt-1">{s.label}</p>
               </div>
             ))}
@@ -194,7 +193,6 @@ export default function LandingPage() {
       <footer className="gradient-hero py-10 sm:py-14">
         <div className="container px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {/* Brand */}
             <div>
               <div className="flex items-center gap-2.5 mb-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-foreground/10 border border-primary-foreground/20">
@@ -206,24 +204,22 @@ export default function LandingPage() {
                 </div>
               </div>
               <p className="text-xs text-primary-foreground/60 leading-relaxed max-w-xs">
-                Ministry of Revenues — Ethiopia. Providing secure, efficient digital tax services for non-resident service providers.
+                Ministry of Revenues — Ethiopia. Providing secure, efficient digital tax services for all taxpayers.
               </p>
             </div>
 
-            {/* Quick Links */}
             <div>
               <h4 className="font-display text-xs font-bold text-secondary uppercase tracking-wider mb-3">Quick Links</h4>
               <nav className="flex flex-col gap-2">
                 <Link to="/register" className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors">Register</Link>
                 <Link to="/track" className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors">Track Application</Link>
-                <Link to="/login" className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors">Officer Login</Link>
+                <Link to="/login" className="text-sm text-primary-foreground/70 hover:text-secondary transition-colors">Sign In</Link>
               </nav>
             </div>
 
-            {/* CTA */}
             <div>
               <h4 className="font-display text-xs font-bold text-secondary uppercase tracking-wider mb-3">Get Started</h4>
-              <p className="text-xs text-primary-foreground/60 mb-4">Register for Digital Services Tax and VAT — takes less than 15 minutes.</p>
+              <p className="text-xs text-primary-foreground/60 mb-4">Register for your tax obligations — takes less than 15 minutes.</p>
               <Link to="/register">
                 <Button variant="gold" size="sm" className="gap-2">
                   Register Here <ArrowRight className="h-4 w-4" />
