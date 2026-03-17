@@ -32,7 +32,7 @@ export function ClientHeader() {
               MOR
             </span>
             <span className="text-[9px] sm:text-[10px] text-muted-foreground leading-tight">
-              Digital Tax Registration
+             Taxpayer Registration
             </span>
           </div>
         </Link>
