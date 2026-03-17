@@ -235,26 +235,7 @@ export default function LandingPage() {
       <footer className="gradient-hero py-10 sm:py-14">
         <div className="container px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            <div>
-              <div className="flex items-center gap-2.5 mb-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-foreground/10 border border-primary-foreground/20">
-                  <Shield className="h-5 w-5 text-secondary" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-display text-sm font-bold text-primary-foreground leading-tight">
-                    MOR
-                  </span>
-                  <span className="text-[10px] text-primary-foreground/50 leading-tight">
-                    Digital Tax Registration
-                  </span>
-                </div>
-              </div>
-              <p className="text-xs text-primary-foreground/60 leading-relaxed max-w-xs">
-                Ministry of Revenues — Ethiopia. Providing secure, efficient
-                digital tax services for all taxpayers.
-              </p>
-            </div>
-
+            
             <div>
               <h4 className="font-display text-xs font-bold text-secondary uppercase tracking-wider mb-3">
                 Quick Links
@@ -298,7 +279,7 @@ export default function LandingPage() {
 
           <div className="mt-8 pt-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-[11px] text-primary-foreground/40">
-              © {new Date().getFullYear()} Ministry of Revenues. All rights
+              © {new Date().getFullYear()}  All rights
               reserved.
             </p>{" "}
             <div className="flex items-center gap-1.5 text-[11px] text-primary-foreground/40">
