@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const options = [
   {
     icon: Building2,
-    title: "Domestic / Resident Taxpayer",
+    title: "Resident Non-Business Taxpayer",
     titleAm: "የሀገር ውስጥ ግብር ከፋይ",
     desc: "For organizations operating within Ethiopia — governmental agencies, NGOs, embassies, religious organizations, and more.",
     to: "/register/domestic",

@@ -3,7 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ClientHeader } from "@/components/ClientHeader";
 import { StepIndicator } from "@/components/StepIndicator";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, CheckCircle2, Building2, Users, FileText, ShieldCheck } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  Building2,
+  Users,
+  FileText,
+  ShieldCheck,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { StepBusiness } from "@/components/registration/StepBusiness";
@@ -18,12 +26,44 @@ const STEPS = [
   { label: "Review & Submit", icon: ShieldCheck },
 ];
 
+// Case Number Display Component
+function CaseNumberDisplay({ caseNumber }: { caseNumber: string }) {
+  const appDate = new Date()
+    .toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+    .toUpperCase();
+
+  return (
+    <div className="flex items-center gap-4 text-sm">
+      <div className="px-4 py-2 rounded-lg bg-muted/30 border border-border">
+        <span className="text-muted-foreground">Date: </span>
+        <span className="font-medium text-foreground">{appDate}</span>
+      </div>
+      <div className="px-4 py-2 rounded-lg bg-primary/5 border border-primary/20">
+        <span className="text-muted-foreground">Application No: </span>
+        <span className="font-bold text-primary">MOR-{caseNumber}</span>
+      </div>
+    </div>
+  );
+}
+
 export default function RegistrationPage() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
+  // Generate case number (format: MOR-NR-YYYY-XXXXX)
+  const year = new Date().getFullYear();
+  const randomNum = Math.floor(Math.random() * 10000)
+    .toString()
+    .padStart(5, "0");
+  const caseNumber = `${year}-${randomNum}`;
+
   const [formData, setFormData] = useState({
+    // Business & Contact (Step 1)
     country: "",
     foreignTin: "",
     legalName: "",
@@ -51,8 +91,93 @@ export default function RegistrationPage() {
     contactPhone: "",
     contactPosition: "",
     contactIdNumber: "",
-    owners: [{ tin: "", country: "", lastName: "", otherNames: "", percentage: "", type: "", nationality: "", idNumber: "" }],
-    localBanks: [{ name: "", number: "", bank: "", branch: "", currency: "ETB", swiftCode: "" }],
+
+    // Tax Auditor Details (New)
+    taxAuditor: {
+      tin: "",
+      registeredName: "",
+      aabeRegistrationNo: "",
+      professionalNo: "",
+    },
+
+    // Tax Agent Details (New)
+    taxAgent: {
+      tin: "",
+      registeredName: "",
+      licenseNo: "",
+      professionalNo: "",
+    },
+
+    // Ownership & Management (Updated)
+    owners: [
+      {
+        tin: "",
+        designation: "",
+        lastName: "",
+        otherNames: "",
+        country: "",
+        percentage: "",
+        startDate: "",
+        nationality: "",
+        idNumber: "",
+      },
+    ],
+
+    // Associated/Related Businesses (New)
+    associatedBusinesses: [
+      {
+        tin: "",
+        associationType: "",
+        startDate: "",
+        legalName: "",
+        tradeName: "",
+        country: "",
+      },
+    ],
+
+    // Bank Details (Updated)
+    bankDetails: [
+      {
+        accountType: "",
+        localBankName: "",
+        internationalBankName: "",
+        internationalBankCountry: "",
+        bankAddress: "",
+        accountHolder: "",
+        accountNumber: "",
+        mainAccount: false,
+        currency: "ETB",
+      },
+    ],
+
+    // Business Activity Details (New)
+    businessActivities: [
+      {
+        activities: "",
+        sector: "",
+        activity: "",
+        startDate: "",
+        formattedDate: "",
+        subgroup: "",
+        group: "",
+        majorGroup: "",
+        division: "",
+        majorDivision: "",
+      },
+    ],
+
+    // Tax Obligations (New)
+    taxObligations: {
+      fiscalYear: "",
+      fiscalYearStart: "",
+      fiscalYearEnd: "",
+      digitalServiceTaxStartDate: "",
+      digitalServiceTaxFormattedDate: "",
+      vatStartDate: "",
+      vatActualStartDate: "",
+    },
+
+    // Tax & Documents (Step 3 - keeping existing)
     activityDescription: "",
     esicCode: "",
     estimatedRevenue: "",
@@ -62,6 +187,8 @@ export default function RegistrationPage() {
     digitalServicesTax: true,
     vatOnForeignSupplies: false,
     withholdingTax: false,
+
+    // Review & Submit (Step 4)
     certifierName: "",
     certifierPosition: "",
     certifierDate: "",
@@ -69,16 +196,51 @@ export default function RegistrationPage() {
     documents: {} as Record<string, File | null>,
   });
 
-  const update = (field: string, value: any) => setFormData(prev => ({ ...prev, [field]: value }));
+  const update = (field: string, value: any) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
-  const next = () => { if (step < STEPS.length - 1) setStep(step + 1); };
-  const prev = () => { if (step > 0) setStep(step - 1); };
+  const next = () => {
+    if (step < STEPS.length - 1) setStep(step + 1);
+  };
+
+  const prev = () => {
+    if (step > 0) setStep(step - 1);
+  };
 
   const handleSubmit = () => {
+    // Validation checks
     if (!formData.certified) {
       toast.error("Please certify the declaration before submitting.");
       return;
     }
+
+    // Check ownership total
+    const totalOwnership = formData.owners.reduce(
+      (sum: number, o: any) => sum + (parseFloat(o.percentage) || 0),
+      0,
+    );
+    if (totalOwnership !== 100) {
+      toast.error("Ownership percentage must total 100%");
+      return;
+    }
+
+    // Check required documents
+    const requiredDocKeys = [
+      "memo",
+      "tinCert",
+      "incorporation",
+      "gmLetter",
+      "passport",
+    ];
+    const docsUploaded = requiredDocKeys.filter(
+      (k) => formData.documents[k],
+    ).length;
+    if (docsUploaded < requiredDocKeys.length) {
+      toast.error("Please upload all required documents");
+      return;
+    }
+
     setSubmitted(true);
     toast.success("Application submitted successfully!");
   };
@@ -96,13 +258,29 @@ export default function RegistrationPage() {
             <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full gradient-primary">
               <CheckCircle2 className="h-10 w-10 text-primary-foreground" />
             </div>
-            <h1 className="font-display text-3xl font-bold text-foreground mb-3">Application Submitted!</h1>
+            <h1 className="font-display text-3xl font-bold text-foreground mb-3">
+              Application Submitted!
+            </h1>
             <p className="text-muted-foreground mb-2">Your reference number:</p>
-            <p className="font-display text-2xl font-bold text-primary mb-6">MOR-NR-2026-00142</p>
-            <p className="text-sm text-muted-foreground mb-8">You will receive a confirmation email. Our officers will review your application and notify you of the outcome.</p>
+            <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 mb-8 border border-primary/20">
+              <p className="font-mono text-3xl font-bold text-primary mb-2">
+                MOR-NR-{caseNumber}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Save this number to track your application status
+              </p>
+            </div>
+            <p className="text-sm text-muted-foreground mb-8">
+              You will receive a confirmation email. Our officers will review
+              your application and notify you of the outcome.
+            </p>
             <div className="flex gap-3 justify-center">
-              <Button variant="outline" onClick={() => navigate("/")}>Back to Home</Button>
-              <Button variant="hero" onClick={() => navigate("/track")}>Track Application</Button>
+              <Button variant="outline" onClick={() => navigate("/")}>
+                Back to Home
+              </Button>
+              <Button variant="hero" onClick={() => navigate("/track")}>
+                Track Application
+              </Button>
             </div>
           </motion.div>
         </div>
@@ -112,9 +290,30 @@ export default function RegistrationPage() {
 
   // Calculate step completion for visual feedback
   const stepCompletions = [
-    !!(formData.legalName && formData.country && formData.contactFirstName && formData.contactEmail),
-    !!(formData.owners[0]?.lastName && formData.localBanks[0]?.name),
-    !!(formData.activityDescription && formData.financialYearEnd),
+    // Step 1: Business & Contact
+    !!(
+      formData.legalName &&
+      formData.country &&
+      formData.contactFirstName &&
+      formData.contactEmail
+    ),
+
+    // Step 2: Ownership & Bank (check if at least basic info is filled)
+    !!(
+      formData.owners[0]?.lastName &&
+      formData.bankDetails[0]?.accountHolder &&
+      formData.taxAuditor?.tin &&
+      formData.taxAgent?.tin
+    ),
+
+    // Step 3: Tax & Documents
+    !!(
+      formData.activityDescription &&
+      formData.financialYearEnd &&
+      formData.esicCode
+    ),
+
+    // Step 4: Review & Submit
     !!(formData.certifierName && formData.certified),
   ];
 
@@ -122,15 +321,29 @@ export default function RegistrationPage() {
     <div className="min-h-screen bg-background">
       <ClientHeader />
       <div className="container max-w-4xl py-4 sm:py-6 md:py-8 px-3 sm:px-4">
-        {/* Compact header */}
-        <div className="mb-4 sm:mb-6">
-          <h1 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground">Digital Services Registration</h1>
-          <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">Complete all sections to register for tax obligations in Ethiopia.</p>
+        {/* Header with Date and Case Number */}
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <h1 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground">
+                Digital Services Registration
+              </h1>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
+                Complete all sections to register for tax obligations in
+                Ethiopia.
+              </p>
+            </div>
+            <CaseNumberDisplay caseNumber={caseNumber} />
+          </div>
         </div>
 
-        {/* Step indicator */}
+        {/* Step indicator with completion status */}
         <div className="mb-4 sm:mb-6">
-          <StepIndicator steps={STEPS.map(s => s.label)} currentStep={step} />
+          <StepIndicator
+            steps={STEPS.map((s) => s.label)}
+            currentStep={step}
+            completions={stepCompletions}
+          />
         </div>
 
         {/* Step content */}
@@ -144,8 +357,13 @@ export default function RegistrationPage() {
                     <Icon className="h-4.5 w-4.5 text-primary-foreground" />
                   </div>
                   <div>
-                    <h2 className="font-display text-lg font-bold text-foreground">{STEPS[step].label}</h2>
-                    <p className="text-xs text-muted-foreground">Step {step + 1} of {STEPS.length}</p>
+                    <h2 className="font-display text-lg font-bold text-foreground">
+                      {STEPS[step].label}
+                    </h2>
+                    <p className="text-xs text-muted-foreground">
+                      Step {step + 1} of {STEPS.length}
+                      {stepCompletions[step] && " ✓ Completed"}
+                    </p>
                   </div>
                 </>
               );
@@ -160,9 +378,15 @@ export default function RegistrationPage() {
               exit={{ opacity: 0, x: -16 }}
               transition={{ duration: 0.2 }}
             >
-              {step === 0 && <StepBusiness formData={formData} update={update} />}
-              {step === 1 && <StepFinancial formData={formData} update={update} />}
-              {step === 2 && <StepTaxDocs formData={formData} update={update} />}
+              {step === 0 && (
+                <StepBusiness formData={formData} update={update} />
+              )}
+              {step === 1 && (
+                <StepFinancial formData={formData} update={update} />
+              )}
+              {step === 2 && (
+                <StepTaxDocs formData={formData} update={update} />
+              )}
               {step === 3 && <StepReview formData={formData} update={update} />}
             </motion.div>
           </AnimatePresence>
@@ -170,19 +394,38 @@ export default function RegistrationPage() {
 
         {/* Navigation */}
         <div className="flex justify-between mt-5">
-          <Button variant="outline" onClick={prev} disabled={step === 0} className="gap-2">
+          <Button
+            variant="outline"
+            onClick={prev}
+            disabled={step === 0}
+            className="gap-2"
+          >
             <ArrowLeft className="h-4 w-4" /> Previous
           </Button>
+
           {step < STEPS.length - 1 ? (
             <Button variant="hero" onClick={next} className="gap-2">
               Continue <ArrowRight className="h-4 w-4" />
             </Button>
           ) : (
-            <Button variant="gold" onClick={handleSubmit} size="lg" className="gap-2">
+            <Button
+              variant="gold"
+              onClick={handleSubmit}
+              size="lg"
+              className="gap-2"
+              disabled={!stepCompletions[step]}
+            >
               Submit Application <CheckCircle2 className="h-4 w-4" />
             </Button>
           )}
         </div>
+
+        {/* Help text for disabled continue button */}
+        {step < STEPS.length - 1 && !stepCompletions[step] && (
+          <p className="text-center text-[10px] sm:text-xs text-muted-foreground mt-3">
+            Please complete all required fields in this section to continue.
+          </p>
+        )}
       </div>
     </div>
   );
