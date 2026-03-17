@@ -75,19 +75,9 @@ export default function LandingPage() {
             transition={{ duration: 0.7 }}
             className="max-w-2xl mx-auto text-center"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 rounded-full gradient-gold px-3 sm:px-4 py-1.5 mb-4 sm:mb-6 shadow-elevated"
-            >
-              <Sparkles className="h-3 sm:h-3.5 w-3 sm:w-3.5 text-secondary-foreground" />
-              <span className="text-[10px] sm:text-xs font-bold font-display text-secondary-foreground uppercase tracking-wider">
-                Ministry of Revenues — Ethiopia
-              </span>
-            </motion.div>
+           
             <h1 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-[1.12] mb-4 sm:mb-6">
-              Digital Tax Registration{" "}
+               Tax Payer Registration{" "}
               <span className="relative inline-block">
                 <span className="text-secondary">Portal</span>
                 <motion.span
