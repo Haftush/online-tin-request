@@ -324,7 +324,7 @@ export function StepTaxDocs({ formData, update }: any) {
             </FieldGroup>
             <FieldGroup label="Fiscal Year End (DMM or DDMM)" required>
               <Input
-                placeholder="e.g., 3006 or 3006"
+                placeholder="e.g. Jan 1–Dec 31"
                 className="h-9 text-sm"
                 value={formData.taxObligations?.fiscalYearEnd || ""}
                 onChange={(e) =>
