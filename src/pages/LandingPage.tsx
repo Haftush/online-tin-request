@@ -77,7 +77,7 @@ export default function LandingPage() {
           >
            
             <h1 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-[1.12] mb-4 sm:mb-6">
-               Tax Payer Registration{" "}
+               Taxpayer Registration{" "}
               <span className="relative inline-block">
                 <span className="text-secondary">Portal</span>
                 <motion.span
