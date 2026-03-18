@@ -167,7 +167,7 @@ const REGIONS = [
 const RESIDENCY_STATUS = [
   "Resident / ነዋሪ",
   "Non-Resident / ነዋሪ ያልሆነ",
-  "Foreign / የውጭ",
+ 
 ];
 
 // ========== Reusable Components ==========
