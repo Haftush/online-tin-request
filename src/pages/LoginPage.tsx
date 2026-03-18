@@ -77,8 +77,8 @@ export default function LoginPage() {
               <Shield className="h-5 w-5 text-secondary-foreground" />
             </div>
             <div className="text-left">
-              <p className="font-display text-sm font-bold text-primary-foreground">MOR Digital Portal</p>
-              <p className="text-[10px] text-primary-foreground/60">Ministry of Revenues — Ethiopia</p>
+              <p className="font-display text-sm font-bold text-primary-foreground">Taxpayer Registration Portal</p>
+             
             </div>
           </Link>
           <h1 className="font-display text-xl sm:text-2xl font-bold text-primary-foreground">
