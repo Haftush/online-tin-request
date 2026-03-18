@@ -8,7 +8,7 @@ import { Shield, LogIn, Eye, EyeOff, UserPlus, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 
-type Tab = "login" | "signup" | "officer";
+type Tab = "login" | "signup";
 
 export default function LoginPage() {
   const [tab, setTab] = useState<Tab>("login");
@@ -58,20 +58,9 @@ export default function LoginPage() {
     }
   };
 
-  const handleOfficerLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (login(email, password, "officer")) {
-      toast.success("Welcome back, Officer!");
-      navigate("/backoffice");
-    } else {
-      toast.error("Invalid officer credentials.");
-    }
-  };
-
   const tabs: { key: Tab; label: string }[] = [
     { key: "login", label: "Sign In" },
     { key: "signup", label: "Create Account" },
-    { key: "officer", label: "Officer" },
   ];
 
   return (
@@ -93,10 +82,10 @@ export default function LoginPage() {
             </div>
           </Link>
           <h1 className="font-display text-xl sm:text-2xl font-bold text-primary-foreground">
-            {tab === "login" ? "Sign In to Your Account" : tab === "signup" ? "Create Your Account" : "Officer Sign In"}
+            {tab === "login" ? "Sign In to Your Account" : "Create Your Account"}
           </h1>
           <p className="text-xs text-primary-foreground/60 mt-1">
-            {tab === "officer" ? "Access the backoffice review portal" : "Register or track your tax application"}
+            Register or track your tax application
           </p>
         </div>
 
@@ -163,31 +152,6 @@ export default function LoginPage() {
               <Button type="submit" variant="gold" className="w-full gap-2" size="lg">
                 <UserPlus className="h-4 w-4" /> Create Account
               </Button>
-            </form>
-          )}
-
-          {/* Officer Login */}
-          {tab === "officer" && (
-            <form onSubmit={handleOfficerLogin} className="space-y-3.5">
-              <div className="space-y-1.5">
-                <Label className="text-xs font-semibold">Officer Email</Label>
-                <Input type="email" placeholder="admin@mor.gov.et" value={email} onChange={e => setEmail(e.target.value)} required />
-              </div>
-              <div className="space-y-1.5">
-                <Label className="text-xs font-semibold">Password</Label>
-                <div className="relative">
-                  <Input type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required />
-                  <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                </div>
-              </div>
-              <Button type="submit" variant="hero" className="w-full gap-2" size="lg">
-                <LogIn className="h-4 w-4" /> Officer Sign In
-              </Button>
-              <p className="text-[10px] text-center text-muted-foreground">
-                Demo: admin@mor.gov.et / admin123
-              </p>
             </form>
           )}
         </div>
