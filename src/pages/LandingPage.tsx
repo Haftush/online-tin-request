@@ -232,10 +232,9 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="gradient-hero py-10 sm:py-14">
+       <footer className="gradient-hero py-10 sm:py-14">
         <div className="container px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            
             <div>
               <h4 className="font-display text-xs font-bold text-secondary uppercase tracking-wider mb-3">
                 Quick Links
@@ -279,9 +278,8 @@ export default function LandingPage() {
 
           <div className="mt-8 pt-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-[11px] text-primary-foreground/40">
-              © {new Date().getFullYear()}  All rights
-              reserved.
-            </p>{" "}
+              © {new Date().getFullYear()} All rights reserved.
+            </p>
             <div className="flex items-center gap-1.5 text-[11px] text-primary-foreground/40">
               <Lock className="h-3 w-3" />
               <span>Secured & Encrypted</span>
