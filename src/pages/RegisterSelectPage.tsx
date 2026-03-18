@@ -15,7 +15,7 @@ const options = [
   },
   {
     icon: Globe,
-    title: "Non-Resident Service Provider",
+    title: "Non-Resident Digital Service Provider",
     titleAm: "ነዋሪ ያልሆነ አገልግሎት ሰጪ",
     desc: "For foreign digital service providers registering for Digital Services Tax and VAT obligations in Ethiopia.",
     to: "/register/non-resident",
