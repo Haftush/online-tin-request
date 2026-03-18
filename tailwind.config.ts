@@ -1,21 +1,42 @@
+// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
+        "3xl": "1920px", // Custom large breakpoint for Mac
       },
     },
     extend: {
       fontFamily: {
         display: ['Plus Jakarta Sans', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
+      },
+      fontSize: {
+        base: ["1rem", { lineHeight: "1.5" }],
+        lg: ["1.125rem", { lineHeight: "1.75" }],
+        xl: ["1.25rem", { lineHeight: "1.75" }],
+        "2xl": ["1.5rem", { lineHeight: "2" }],
+        "3xl": ["1.875rem", { lineHeight: "2.25" }],
+        "4xl": ["2.25rem", { lineHeight: "2.5" }],
+        "5xl": ["3rem", { lineHeight: "1" }],
+        "6xl": ["3.75rem", { lineHeight: "1" }],
       },
       colors: {
         border: "hsl(var(--border))",
